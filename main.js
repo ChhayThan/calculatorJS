@@ -28,7 +28,6 @@ btn.forEach((button) => {
       } else {
         operator = button.innerText;
       }
-      //console.log(firstNum, operator);
     }
 
     if (button.innerText == "=") {
@@ -71,7 +70,6 @@ function sign(currentNum) {
   }
   if (currentNum.includes("-")) {
     result = currentNum.slice(1);
-    console.log(result);
   } else {
     result += currentNum;
   }
