@@ -12,12 +12,18 @@ btn.forEach((button) => {
       return;
     } else if (target.classList.contains("numberKeys")) {
       display.value += button.innerText;
+    } else if (button.innerText == "+/-") {
+      let currentNum = display.value;
+      display.value = sign(currentNum);
+    } else if (button.innerText == "%") {
+      let currentNum = display.value;
+      display.value = percentage(currentNum);
     }
 
     if (target.classList.contains("operatorKeys") && button.innerText !== "=") {
       firstNum = display.value;
       display.value = "";
-      if ((button.innerText = "x")) {
+      if (button.innerText == "x") {
         operator = "*";
       } else {
         operator = button.innerText;
@@ -27,7 +33,8 @@ btn.forEach((button) => {
 
     if (button.innerText == "=") {
       secondNum = display.value;
-      display.value = eval(`${firstNum} ${operator} ${secondNum}`);
+      console.log(firstNum, operator, secondNum);
+      display.value = evaluate(firstNum, operator, secondNum);
     }
   });
 });
@@ -38,4 +45,39 @@ function clearAll() {
   firstNum = "";
   secondNum = "";
   operator = "";
+}
+
+function evaluate(firstNum, operator, secondNum) {
+  if (firstNum == "" || operator == "" || secondNum == "") {
+    return "ERROR";
+  }
+  let result = 0;
+  if (operator == "÷") {
+    result = firstNum / secondNum;
+  } else if (operator == "*") {
+    result = firstNum * secondNum;
+  } else if (operator == "-") {
+    result = firstNum - secondNum;
+  } else if (operator == "+") {
+    result = firstNum + secondNum;
+  }
+  return result;
+}
+
+function sign(currentNum) {
+  let result = "-";
+  if (currentNum == "") {
+    return currentNum;
+  }
+  if (currentNum.includes("-")) {
+    result = currentNum.slice(1);
+    console.log(result);
+  } else {
+    result += currentNum;
+  }
+  return result;
+}
+
+function percentage(currentNum) {
+  return currentNum / 100;
 }
