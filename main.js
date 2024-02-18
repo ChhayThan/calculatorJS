@@ -11,6 +11,11 @@ btn.forEach((button) => {
       clearAll();
       return;
     } else if (target.classList.contains("numberKeys")) {
+      if (button.innerText == ".") {
+        if (display.value.includes(".")) {
+          return;
+        }
+      }
       display.value += button.innerText;
     } else if (button.innerText == "+/-") {
       let currentNum = display.value;
