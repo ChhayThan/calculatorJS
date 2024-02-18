@@ -32,7 +32,7 @@ btn.forEach((button) => {
 
     if (button.innerText == "=") {
       secondNum = display.value;
-      console.log(firstNum, operator, secondNum);
+      //console.log(firstNum, operator, secondNum);
       display.value = evaluate(firstNum, operator, secondNum);
     }
   });
@@ -51,14 +51,17 @@ function evaluate(firstNum, operator, secondNum) {
     return "ERROR";
   }
   let result = 0;
+  let firstNumber = Number(firstNum);
+  let secondNumber = Number(secondNum);
+
   if (operator == "÷") {
-    result = firstNum / secondNum;
+    result = firstNumber / secondNumber;
   } else if (operator == "*") {
-    result = firstNum * secondNum;
+    result = firstNumber * secondNumber;
   } else if (operator == "-") {
-    result = firstNum - secondNum;
+    result = firstNumber - secondNumber;
   } else if (operator == "+") {
-    result = firstNum + secondNum;
+    result = firstNumber + secondNumber;
   }
   return result;
 }
