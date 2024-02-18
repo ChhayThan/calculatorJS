@@ -60,6 +60,9 @@ function evaluate(firstNum, operator, secondNum) {
   let secondNumber = Number(secondNum);
 
   if (operator == "÷") {
+    if (secondNum == 0) {
+      return "Bruh";
+    }
     result = firstNumber / secondNumber;
   } else if (operator == "*") {
     result = firstNumber * secondNumber;
@@ -67,6 +70,15 @@ function evaluate(firstNum, operator, secondNum) {
     result = firstNumber - secondNumber;
   } else if (operator == "+") {
     result = firstNumber + secondNumber;
+  }
+
+  if (result.toString().includes(".")) {
+    let splitResult = result.toString().split(".");
+    let decimal = splitResult[1];
+
+    if (decimal.toString().length > 6) {
+      return result.toFixed(5);
+    }
   }
   return result;
 }
